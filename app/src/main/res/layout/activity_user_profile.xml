@@ -4,36 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#434343"
     tools:context=".UserProfile">
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="482dp"
+        android:layout_height="159dp"
+        app:srcCompat="@drawable/bottom_rectangle"
+        tools:layout_editor_absoluteY="597dp" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="506dp"
+        android:layout_height="111dp"
+        app:srcCompat="@drawable/top_rectangle"
+        tools:layout_editor_absoluteX="-48dp"
+        tools:layout_editor_absoluteY="-2dp" />
+
+    <ImageView
+        android:id="@+id/hp_iv_v_profile3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/profile_icon_ff_1"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="627dp" />
+
+    <ImageView
+        android:id="@+id/hp_iv_v_movieSearch3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/search_icon_ff_1"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="627dp" />
+
+    <ImageView
+        android:id="@+id/hp_iv_v_userSearch3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/friends_icon_ff_1"
+        tools:layout_editor_absoluteX="273dp"
+        tools:layout_editor_absoluteY="627dp" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="19dp"
         android:text="Username"
         android:textSize="40sp"
-        app:layout_constraintStart_toEndOf="@+id/up_btn_v_back"
-        app:layout_constraintTop_toBottomOf="@+id/up_btn_v_back" />
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="16dp" />
 
-    <Button
-        android:id="@+id/up_btn_v_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="16dp"
-        android:text="Back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="107dp"
-        android:text="User info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 </androidx.constraintlayout.widget.ConstraintLayout>
