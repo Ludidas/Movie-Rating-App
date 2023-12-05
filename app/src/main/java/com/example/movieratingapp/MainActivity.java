@@ -16,9 +16,10 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity
 {
+    DatabaseHelper dbHelper;
+
     Intent loginIntent;
     Intent signUpIntent;
-
 
     ImageView ma_iv_j_login;
     ImageView ma_iv_j_signUp;
@@ -35,6 +36,10 @@ public class MainActivity extends AppCompatActivity
         loginIntent=new Intent(MainActivity.this, Login.class);
         signUpIntent=new Intent(MainActivity.this, SignUp.class);
 
+        //Initialize DatabaseHelper
+        dbHelper = new DatabaseHelper(this);
+        //call the initializeDB() function to fill the records into our table
+        dbHelper.initializeDB();
 
 
         loginButtonEvent();

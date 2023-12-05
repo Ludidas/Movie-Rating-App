@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MovieRatingApp"
         tools:targetApi="31">
         <activity
+            android:name=".recommendedMovies"
+            android:exported="false" />
+        <activity
             android:name=".UserSearch"
             android:exported="false" />
         <activity
