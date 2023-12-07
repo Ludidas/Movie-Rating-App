@@ -142,7 +142,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
                 //no need for a loop.  Should only be one thing returned to us
                 //we do not need to use getcolumindex because this should only return us one column because we are selecting password only in our query
-                if(password.equals(cursor.getString(0).toString()))
+                if(password.equals(cursor.getString(0)))
                 {
                     goodUsernamePassword = true;
                 }
@@ -188,6 +188,24 @@ public class DatabaseHelper extends SQLiteOpenHelper
         {
             return false;
         }
+    }
+    public boolean isUserAdmin(String username)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String checkAdmin = "SELECT admin FROM " + USER_TABLE_NAME + " WHERE username = '" + username + "';";
+        Cursor cursor = db.rawQuery(checkAdmin,null);
+        cursor.moveToFirst();
+
+        boolean isAdmin=false;
+
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range") int adminInt = cursor.getInt(cursor.getColumnIndex("admin"));
+            isAdmin = (adminInt == 1);
+        }
+
+        db.close();
+
+        return isAdmin;
     }
 
     @SuppressLint("Range")
@@ -357,6 +375,43 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     //MOVIE CRUD===================================================================================
 
+    public void addMovie(Movies m)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        db.execSQL("INSERT INTO " + MOVIE_TABLE_NAME +
+                "(title, genre, releaseYear, ageRating, description, trailerUrl) VALUES('" + m.getTitle() + "','" + m.getGenre() + "','" + m.getReleaseYear() + "','" + m.getAgeRating() +
+                "','" + m.getDescription() + "','" + m.getTrailerUrl() + "');");
+
+        db.close();
+    }
+
+    public void deleteMovie(String id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + MOVIE_TABLE_NAME + " WHERE movieId = '" + id + "';");
+        db.close();
+    }
+
+    public void updateMovie(Movies m)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String updateCommand = "UPDATE " + MOVIE_TABLE_NAME + " SET title = '" + m.getTitle() + "' , genre = '" + m.getTitle() + "' , releaseYear = '" + m.getReleaseYear() +
+                "' , ageRating = '" + m.getAgeRating() + "' , description = '" + m.getDescription() + "' , trailerUrl = '" + m.getTrailerUrl() + "' WHERE movieId = '" + m.getMovieId() + "';";
+
+        db.execSQL(updateCommand);
+        db.close();
+    }
+
+    //REVIEW CRUD==================================================================================
+
+    public void addNewReview(Reviews r)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+
+        db.close();
+    }
 
 }

@@ -5,31 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#434343"
-    tools:context=".recommendedMovies">
+    tools:context=".MoviePage">
 
-    <ListView
-        android:id="@+id/rm_lv_v_movies"
+    <TextView
+        android:id="@+id/mp_tv_v_movieInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="-10dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView25"
+        android:layout_marginTop="76dp"
+        android:fontFamily="@font/nova_round"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.205"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView26" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mp_tv_v_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nova_round"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toEndOf="@+id/mp_iv_v_back"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/mp_tv_v_description"
+        android:layout_width="363dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/nova_round"
+        android:text="Description"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mp_tv_v_movieInfo" />
 
     <ImageView
-        android:id="@+id/imageView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="52dp"
+        android:id="@+id/mp_iv_v_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/recommended" />
+        app:srcCompat="@drawable/back_button" />
 
     <ImageView
-        android:id="@+id/imageView25"
+        android:id="@+id/imageView28"
         android:layout_width="482dp"
         android:layout_height="159dp"
         android:layout_marginBottom="-25dp"
@@ -39,7 +70,7 @@
         app:srcCompat="@drawable/bottom_rectangle" />
 
     <ImageView
-        android:id="@+id/rm_iv_v_profile"
+        android:id="@+id/mp_iv_v_profile"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginBottom="44dp"
@@ -49,23 +80,23 @@
         app:srcCompat="@drawable/profile_icon_ff_1" />
 
     <ImageView
-        android:id="@+id/rm_iv_v_movieSearch"
+        android:id="@+id/mp_iv_v_movieSearch"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginEnd="52dp"
         android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/rm_iv_v_profile"
+        app:layout_constraintEnd_toStartOf="@+id/mp_iv_v_profile"
         app:srcCompat="@drawable/search_icon_ff_1" />
 
     <ImageView
-        android:id="@+id/rm_iv_v_userSearch"
+        android:id="@+id/mp_iv_v_userSearch"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="52dp"
         android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/rm_iv_v_profile"
+        app:layout_constraintStart_toEndOf="@+id/mp_iv_v_profile"
         app:srcCompat="@drawable/friends_icon_ff_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

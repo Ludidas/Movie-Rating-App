@@ -7,7 +7,7 @@
     android:background="#434343">
 
     <ImageView
-        android:id="@+id/imageView27"
+        android:id="@+id/imageView40"
         android:layout_width="400dp"
         android:layout_height="100dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,30 +16,26 @@
         app:srcCompat="@drawable/text_box_rectangle" />
 
     <TextView
-        android:id="@+id/mc_tv_v_title"
+        android:id="@+id/uc_tv_v_uname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/nova_round"
         android:text="TextView"
         android:textColor="#FFFFFF"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toEndOf="@+id/imageView39"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/mc_tv_v_genre"
+    <ImageView
+        android:id="@+id/imageView39"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:fontFamily="@font/nova_round"
-        android:text="TextView"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profile_icon_ff_1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

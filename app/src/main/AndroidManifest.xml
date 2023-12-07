@@ -13,6 +13,21 @@
         android:theme="@style/Theme.MovieRatingApp"
         tools:targetApi="31">
         <activity
+            android:name=".AdminAddMovie"
+            android:exported="false" />
+        <activity
+            android:name=".AdminUsers"
+            android:exported="false" />
+        <activity
+            android:name=".AdminMovies"
+            android:exported="false" />
+        <activity
+            android:name=".AdminHomePage"
+            android:exported="false" />
+        <activity
+            android:name=".MoviePage"
+            android:exported="false" />
+        <activity
             android:name=".recommendedMovies"
             android:exported="false" />
         <activity

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 public class UserProfile extends AppCompatActivity
 {
+    DatabaseHelper dbHelper;
+
     Intent homePageIntent;
     Intent profileIntent;
     Intent userSearchIntent;
@@ -22,6 +25,9 @@ public class UserProfile extends AppCompatActivity
     ImageView up_iv_j_settingsBox;
     ImageView up_iv_j_signOut;
     ImageView up_iv_j_deleteAcc;
+    ImageView up_iv_j_deletePrompt;
+    ImageView up_iv_j_yesDelete;
+    ImageView up_iv_j_noDelete;
     ImageView up_iv_j_movieSearch;
     ImageView up_iv_j_profile;
     ImageView up_iv_j_userSearch;
@@ -37,6 +43,9 @@ public class UserProfile extends AppCompatActivity
         up_iv_j_settingsBox=findViewById(R.id.up_iv_v_settingsBox);
         up_iv_j_signOut=findViewById(R.id.up_iv_v_signOut);
         up_iv_j_deleteAcc=findViewById(R.id.up_iv_v_deleteAcc);
+        up_iv_j_deletePrompt=findViewById(R.id.up_iv_v_deletePrompt);
+        up_iv_j_yesDelete=findViewById(R.id.up_iv_v_yesDelete);
+        up_iv_j_noDelete=findViewById(R.id.up_iv_v_noDelete);
         up_iv_j_movieSearch=findViewById(R.id.up_iv_v_movieSearch);
         up_iv_j_profile=findViewById(R.id.up_iv_v_profile);
         up_iv_j_userSearch=findViewById(R.id.up_iv_v_userSearch);
@@ -46,14 +55,19 @@ public class UserProfile extends AppCompatActivity
         userSearchIntent=new Intent(UserProfile.this, UserSearch.class);
         mainIntent=new Intent(UserProfile.this, MainActivity.class);
 
+        dbHelper = new DatabaseHelper(this);
 
         setUsernameText();
         settingsButtonEvent();
+        deleteAccountButtonEvent();
+        yesDeleteButtonEvent();
+        noDeleteButtonEvent();
         signOutButtonEvent();
         movieSearchButtonEvent();
         profileButtonEvent();
         userSearchButtonEvent();
     }
+
     //=====================================================================================
     public void setUsernameText()
     {
@@ -61,7 +75,7 @@ public class UserProfile extends AppCompatActivity
     }
 
 
-    //BUTTON EVENTS==========================================================================
+    //BUTTON EVENTS===============================================================================
     public void settingsButtonEvent()
     {
         up_iv_j_settings.setOnClickListener(new View.OnClickListener() {
@@ -71,9 +85,7 @@ public class UserProfile extends AppCompatActivity
                 //If settings box is visible, set everything as "GONE" when pressed, otherwise set it visible.
                 if(up_iv_j_settingsBox.getVisibility()==View.VISIBLE)
                 {
-                    up_iv_j_settingsBox.setVisibility(View.GONE);
-                    up_iv_j_signOut.setVisibility(View.GONE);
-                    up_iv_j_deleteAcc.setVisibility(View.GONE);
+                    clearSettings();
                 }
                 else
                 {
@@ -83,6 +95,58 @@ public class UserProfile extends AppCompatActivity
                 }
             }
         });
+    }
+
+    public void deleteAccountButtonEvent()
+    {
+        up_iv_j_deleteAcc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                //Set first-layer settings buttons to GONE so they can't be pressed, set the ones relating to deleting account to visible
+                up_iv_j_signOut.setVisibility(View.GONE);
+                up_iv_j_deleteAcc.setVisibility(View.GONE);
+                up_iv_j_deletePrompt.setVisibility(View.VISIBLE);
+                up_iv_j_yesDelete.setVisibility(View.VISIBLE);
+                up_iv_j_noDelete.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    public void yesDeleteButtonEvent()
+    {
+        up_iv_j_yesDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                dbHelper.deleteUser(AppData.getUsername());
+                Log.d("User Deleted",AppData.getUsername() + " was deleted.");
+                startActivity(mainIntent);
+            }
+        });
+    }
+
+    public void noDeleteButtonEvent()
+    {
+        up_iv_j_noDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                //If no to delete, clear settings
+                clearSettings();
+            }
+        });
+    }
+
+    public void clearSettings()
+    {
+        //Clears all settings boxes
+        up_iv_j_settingsBox.setVisibility(View.GONE);
+        up_iv_j_signOut.setVisibility(View.GONE);
+        up_iv_j_deleteAcc.setVisibility(View.GONE);
+        up_iv_j_deletePrompt.setVisibility(View.GONE);
+        up_iv_j_yesDelete.setVisibility(View.GONE);
+        up_iv_j_noDelete.setVisibility(View.GONE);
     }
 
     public void signOutButtonEvent()

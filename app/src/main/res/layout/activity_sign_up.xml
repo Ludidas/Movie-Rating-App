@@ -17,6 +17,34 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/background" />
 
+    <TextView
+        android:id="@+id/su_tv_v_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="ERROR"
+        android:textColor="#DC0A0A"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/su_iv_v_cPassword" />
+
+    <TextView
+        android:id="@+id/su_tv_v_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="SUCCESS"
+        android:textColor="#EDCB4B"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/su_tv_v_error" />
+
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
@@ -80,7 +108,7 @@
         android:id="@+id/su_iv_v_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintStart_toStartOf="@+id/su_iv_v_cPassword"
         app:layout_constraintTop_toBottomOf="@+id/su_iv_v_cPassword"
         app:srcCompat="@drawable/submit_button" />
@@ -134,5 +162,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/su_iv_v_cPassword"
         app:layout_constraintTop_toBottomOf="@+id/su_et_v_pword" />
+
+    <ImageView
+        android:id="@+id/su_iv_v_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

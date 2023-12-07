@@ -129,4 +129,39 @@
         app:layout_constraintStart_toStartOf="@+id/up_iv_v_settingsBox"
         app:srcCompat="@drawable/delete_account" />
 
+    <ImageView
+        android:id="@+id/up_iv_v_noDelete"
+        android:layout_width="140dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/up_iv_v_settingsBox"
+        app:layout_constraintEnd_toEndOf="@+id/up_iv_v_settingsBox"
+        app:layout_constraintTop_toTopOf="@+id/up_iv_v_settingsBox"
+        app:layout_constraintVertical_bias="0.651"
+        app:srcCompat="@drawable/no" />
+
+    <ImageView
+        android:id="@+id/up_iv_v_yesDelete"
+        android:layout_width="140dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/up_iv_v_settingsBox"
+        app:layout_constraintStart_toStartOf="@+id/up_iv_v_settingsBox"
+        app:layout_constraintTop_toTopOf="@+id/up_iv_v_settingsBox"
+        app:layout_constraintVertical_bias="0.655"
+        app:srcCompat="@drawable/yes" />
+
+    <ImageView
+        android:id="@+id/up_iv_v_deletePrompt"
+        android:layout_width="205dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/up_iv_v_settingsBox"
+        app:layout_constraintStart_toStartOf="@+id/up_iv_v_settingsBox"
+        app:layout_constraintTop_toTopOf="@+id/up_iv_v_settingsBox"
+        app:srcCompat="@drawable/are_you_sure_you_want_to_delete_your_account_" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
