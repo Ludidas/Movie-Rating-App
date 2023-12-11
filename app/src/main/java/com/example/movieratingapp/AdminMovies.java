@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -18,6 +19,7 @@ public class AdminMovies extends AppCompatActivity
 
     Intent addMovieIntent;
     Intent adminHomeIntent;
+    Intent movieInfoIntent;
 
     ImageView am_iv_j_back;
     ImageView am_iv_j_addMovie;
@@ -34,12 +36,14 @@ public class AdminMovies extends AppCompatActivity
 
         addMovieIntent=new Intent(AdminMovies.this, AdminAddMovie.class);
         adminHomeIntent=new Intent(AdminMovies.this, AdminHomePage.class);
+        movieInfoIntent=new Intent(AdminMovies.this, MovieInfo.class);
 
         movieList=new ArrayList<Movies>();
         dbHelper=new DatabaseHelper(this);
         movieList = dbHelper.getAllMovies();
 
         fillListView();
+        selectMovieEvent();
         backButtonEvent();
         addMovieButtonEvent();
     }
@@ -49,6 +53,17 @@ public class AdminMovies extends AppCompatActivity
         adapter=new MovieListAdapter(this, movieList);
         //set the listview's adapter
         am_lv_j_movies.setAdapter(adapter);
+    }
+
+    public void selectMovieEvent()
+    {
+        am_lv_j_movies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                movieInfoIntent.putExtra("MOVIE", movieList.get(i));
+                startActivity(movieInfoIntent);
+            }
+        });
     }
 
     public void backButtonEvent()

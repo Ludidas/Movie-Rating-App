@@ -7,6 +7,18 @@
     android:background="#434343"
     tools:context=".UserSearch">
 
+    <ListView
+        android:id="@+id/us_lv_v_users"
+        android:layout_width="wrap_content"
+        android:layout_height="600dp"
+        android:layout_marginTop="-20dp"
+        android:layout_marginBottom="-25dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView19"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView20"
+        tools:visibility="invisible" />
+
     <ImageView
         android:id="@+id/imageView19"
         android:layout_width="482dp"
@@ -107,6 +119,7 @@
         android:layout_width="46dp"
         android:layout_height="35dp"
         android:layout_marginTop="22dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/us_et_v_searchBar"
         app:layout_constraintTop_toTopOf="@+id/imageView22" />
 

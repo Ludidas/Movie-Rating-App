@@ -6,18 +6,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class UserProfile extends AppCompatActivity
 {
     DatabaseHelper dbHelper;
+    ReviewListAdapter adapter;
+    ArrayList<Reviews> reviewList;
+    ArrayList<Reviews> filteredReviews;
 
     Intent homePageIntent;
     Intent profileIntent;
     Intent userSearchIntent;
     Intent mainIntent;
+    Intent reviewInfoIntent;
 
 
     TextView up_tv_j_username;
@@ -31,6 +39,7 @@ public class UserProfile extends AppCompatActivity
     ImageView up_iv_j_movieSearch;
     ImageView up_iv_j_profile;
     ImageView up_iv_j_userSearch;
+    ListView up_lv_j_reviews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -49,15 +58,33 @@ public class UserProfile extends AppCompatActivity
         up_iv_j_movieSearch=findViewById(R.id.up_iv_v_movieSearch);
         up_iv_j_profile=findViewById(R.id.up_iv_v_profile);
         up_iv_j_userSearch=findViewById(R.id.up_iv_v_userSearch);
+        up_lv_j_reviews=findViewById(R.id.up_lv_v_reviews);
 
         homePageIntent=new Intent(UserProfile.this, HomePage.class);
         profileIntent=new Intent(UserProfile.this, UserProfile.class);
         userSearchIntent=new Intent(UserProfile.this, UserSearch.class);
         mainIntent=new Intent(UserProfile.this, MainActivity.class);
+        reviewInfoIntent=new Intent(UserProfile.this, ReviewInfo.class);
 
-        dbHelper = new DatabaseHelper(this);
+        reviewList=new ArrayList<Reviews>();
+        filteredReviews=new ArrayList<Reviews>();
+        dbHelper=new DatabaseHelper(this);
+        reviewList = dbHelper.getAllReviews();
+
+
+        // Filter reviews based on the username
+        for (Reviews review : reviewList)
+        {
+            if (review.getUserId().equals(AppData.getUsername()))
+            {
+                filteredReviews.add(review);
+            }
+        }
+
 
         setUsernameText();
+        fillListView();
+        reviewSelectedEvent();
         settingsButtonEvent();
         deleteAccountButtonEvent();
         yesDeleteButtonEvent();
@@ -73,9 +100,27 @@ public class UserProfile extends AppCompatActivity
     {
         up_tv_j_username.setText(AppData.getUsername());
     }
-
+    public void fillListView()
+    {
+        // Create and set the adapter with the filtered reviews
+        adapter = new ReviewListAdapter(this, filteredReviews);
+        up_lv_j_reviews.setAdapter(adapter);
+    }
 
     //BUTTON EVENTS===============================================================================
+
+    public void reviewSelectedEvent()
+    {
+        up_lv_j_reviews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id)
+            {
+                reviewInfoIntent.putExtra("REVIEW", filteredReviews.get(i));
+                startActivity(reviewInfoIntent);
+            }
+        });
+    }
+
     public void settingsButtonEvent()
     {
         up_iv_j_settings.setOnClickListener(new View.OnClickListener() {

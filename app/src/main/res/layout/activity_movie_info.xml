@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#434343"
+    tools:context=".MovieInfo">
+
+    <ImageView
+        android:id="@+id/mi_iv_v_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/submit_button" />
+
+    <TextView
+        android:id="@+id/mi_tv_v_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textColor="#DD2929"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mi_iv_v_submit" />
+
+    <ImageView
+        android:id="@+id/imageView47"
+        android:layout_width="430dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="-10dp"
+        app:layout_constraintBottom_toTopOf="@+id/mi_et_v_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/divide_bar_1" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nova_round"
+        android:text="Description"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView47"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView46"
+        android:layout_width="430dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="-10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mi_et_v_description"
+        app:srcCompat="@drawable/divide_bar_1" />
+
+    <EditText
+        android:id="@+id/mi_et_v_description"
+        android:layout_width="412dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="46dp"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:inputType="text"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mi_iv_v_ageRating" />
+
+    <ImageView
+        android:id="@+id/mi_iv_v_ageRating"
+        android:layout_width="298dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mi_iv_v_releaseYear"
+        app:srcCompat="@drawable/text_box_rectangle" />
+
+    <Spinner
+        android:id="@+id/mi_sp_v_ageRating"
+        android:layout_width="287dp"
+        android:layout_height="49dp"
+        android:backgroundTint="#E1A408"
+        android:foregroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/mi_iv_v_ageRating"
+        app:layout_constraintEnd_toEndOf="@+id/mi_iv_v_ageRating"
+        app:layout_constraintStart_toStartOf="@+id/mi_iv_v_ageRating"
+        app:layout_constraintTop_toTopOf="@+id/mi_iv_v_ageRating" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nova_round"
+        android:text="Age Rating"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/mi_iv_v_ageRating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/mi_iv_v_releaseYear"
+        android:layout_width="298dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mi_iv_v_genre"
+        app:srcCompat="@drawable/text_box_rectangle" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nova_round"
+        android:text="Release Year"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/mi_iv_v_releaseYear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/mi_sp_v_year"
+        android:layout_width="287dp"
+        android:layout_height="49dp"
+        android:backgroundTint="#E1A408"
+        android:foregroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/mi_iv_v_releaseYear"
+        app:layout_constraintEnd_toEndOf="@+id/mi_iv_v_releaseYear"
+        app:layout_constraintStart_toStartOf="@+id/mi_iv_v_releaseYear"
+        app:layout_constraintTop_toTopOf="@+id/mi_iv_v_releaseYear" />
+
+    <ImageView
+        android:id="@+id/mi_iv_v_genre"
+        android:layout_width="298dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mi_iv_v_title"
+        app:srcCompat="@drawable/text_box_rectangle" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nova_round"
+        android:text="Genre"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/mi_iv_v_genre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/mi_sp_v_genre"
+        android:layout_width="287dp"
+        android:layout_height="49dp"
+        android:backgroundTint="#E1A408"
+        android:foregroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/mi_iv_v_genre"
+        app:layout_constraintEnd_toEndOf="@+id/mi_iv_v_genre"
+        app:layout_constraintStart_toStartOf="@+id/mi_iv_v_genre"
+        app:layout_constraintTop_toTopOf="@+id/mi_iv_v_genre" />
+
+    <ImageView
+        android:id="@+id/mi_iv_v_title"
+        android:layout_width="298dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView30"
+        app:srcCompat="@drawable/text_box_rectangle" />
+
+    <ImageView
+        android:id="@+id/imageView30"
+        android:layout_width="506dp"
+        android:layout_height="111dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/top_rectangle" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/nova_round"
+        android:text="Edit Movie"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nova_round"
+        android:text="Title"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/mi_iv_v_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/mi_iv_v_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_button" />
+
+    <EditText
+        android:id="@+id/mi_et_v_title"
+        android:layout_width="282dp"
+        android:layout_height="47dp"
+        android:ems="10"
+        android:fontFamily="sans-serif"
+        android:inputType="text"
+        android:text="Title"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/mi_iv_v_title"
+        app:layout_constraintEnd_toEndOf="@+id/mi_iv_v_title"
+        app:layout_constraintStart_toStartOf="@+id/mi_iv_v_title"
+        app:layout_constraintTop_toTopOf="@+id/mi_iv_v_title" />
+
+    <ImageView
+        android:id="@+id/mi_iv_v_delete"
+        android:layout_width="154dp"
+        android:layout_height="55dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/delete_movie" />
+</androidx.constraintlayout.widget.ConstraintLayout>

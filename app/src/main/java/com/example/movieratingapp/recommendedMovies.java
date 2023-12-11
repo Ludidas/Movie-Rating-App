@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -19,6 +20,7 @@ public class recommendedMovies extends AppCompatActivity
     Intent movieSearchIntent;
     Intent profileIntent;
     Intent userSearchIntent;
+    Intent moviePageIntent;
 
     ListView rm_lv_j_movies;
     ImageView rm_iv_j_movieSearch;
@@ -38,6 +40,7 @@ public class recommendedMovies extends AppCompatActivity
         movieSearchIntent=new Intent(recommendedMovies.this, HomePage.class);
         profileIntent=new Intent(recommendedMovies.this, UserProfile.class);
         userSearchIntent=new Intent(recommendedMovies.this, UserSearch.class);
+        moviePageIntent=new Intent(recommendedMovies.this, MoviePage.class);
 
 
         movieList=new ArrayList<Movies>();
@@ -47,12 +50,24 @@ public class recommendedMovies extends AppCompatActivity
         rm_lv_j_movies.setAdapter(adapter);
 
         fillListView();
+        selectMovieEvent();
         movieSearchButtonEvent();
         profileButtonEvent();
         userSearchButtonEvent();
     }
 
     //Button Events==================================================================
+
+    public void selectMovieEvent()
+    {
+        rm_lv_j_movies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                moviePageIntent.putExtra("MOVIE", movieList.get(i));
+                startActivity(moviePageIntent);
+            }
+        });
+    }
     public void movieSearchButtonEvent()
     {
         rm_iv_j_movieSearch.setOnClickListener(new View.OnClickListener() {

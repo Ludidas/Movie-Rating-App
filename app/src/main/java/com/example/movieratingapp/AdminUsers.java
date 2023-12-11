@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -16,6 +17,7 @@ public class AdminUsers extends AppCompatActivity {
     ArrayList<Users> userList;
 
     Intent adminHomeIntent;
+    Intent userInfoIntent;
 
     ImageView au_iv_j_back;
     ImageView au_iv_j_addUser;
@@ -31,13 +33,16 @@ public class AdminUsers extends AppCompatActivity {
         au_lv_j_users=findViewById(R.id.au_lv_v_users);
 
         adminHomeIntent=new Intent(AdminUsers.this, AdminHomePage.class);
+        userInfoIntent=new Intent(AdminUsers.this, UserInfo.class);
 
         userList=new ArrayList<Users>();
         dbHelper=new DatabaseHelper(this);
         userList = dbHelper.getAllUsers();
 
-        backButtonEvent();
+
         fillListView();
+        selectMovieEvent();
+        backButtonEvent();
         addUserButtonEvent();
     }
 
@@ -46,6 +51,17 @@ public class AdminUsers extends AppCompatActivity {
         adapter=new UserListAdapter(this, userList);
         //set the listview's adapter
         au_lv_j_users.setAdapter(adapter);
+    }
+
+    public void selectMovieEvent()
+    {
+        au_lv_j_users.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                userInfoIntent.putExtra("USER", userList.get(i));
+                startActivity(userInfoIntent);
+            }
+        });
     }
 
     public void backButtonEvent()

@@ -44,12 +44,12 @@ public class UserListAdapter extends BaseAdapter
             convertView=mInflater.inflate(R.layout.user_cell, null);
         }
 
-        //find the GUI elements in my movie_cell
+        //find the GUI elements in my user_cell
         TextView username=convertView.findViewById(R.id.uc_tv_v_uname);
 
         Users user=listOfUsers.get(i);
 
-        //set the GUI for the custom_cell.xml
+        //set the GUI for the user_cell.xml
         username.setText(user.getUname());
 
         return convertView;

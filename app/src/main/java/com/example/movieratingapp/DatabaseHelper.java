@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper
@@ -26,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         //super is used to call the functionality of the base class SQLiteOpenHelper and
         //then executes the extended (DatabaseHelper)
 
-        super(context,DATABASE_NAME , null, 2);
+        super(context,DATABASE_NAME , null, 7);
     }
 
     @Override
@@ -43,7 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 " (movieId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR(255), genre VARCHAR(255), releaseYear INTEGER, ageRating VARCHAR(8), description TEXT, trailerUrl VARCHAR(255));");
 
         db.execSQL("CREATE TABLE IF NOT EXISTS " + REVIEW_TABLE_NAME +
-                " (reviewId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, movieId INTEGER NOT NULL, userId INTEGER NOT NULL, comments TEXT, stars INTEGER NOT NULL);");
+                " (reviewId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, movieId INTEGER NOT NULL, userId VARCHAR (255), comments TEXT, stars INTEGER NOT NULL);");
     }
 
     @Override
@@ -168,7 +170,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public boolean usernameExists(String username)
     {
-
         SQLiteDatabase db = this.getReadableDatabase();
         String checkUsername = "Select count(username) from " + USER_TABLE_NAME + " where username = '" + username + "';";
         Cursor cursor = db.rawQuery(checkUsername, null);
@@ -206,6 +207,50 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.close();
 
         return isAdmin;
+    }
+
+    public boolean reviewExists(int movieId, String username)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String checkReview = "SELECT count(reviewId) FROM " + REVIEW_TABLE_NAME + " WHERE userId = '" + username + "' AND movieId = " + movieId + ";";
+        Cursor cursor = db.rawQuery(checkReview, null);
+        cursor.moveToFirst();
+
+        int count = cursor.getInt(0);
+
+        // Close the database
+        db.close();
+
+        if(count != 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    @SuppressLint("Range")
+    public int getMovieFromReview(int reviewId)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        int movieId=-1;
+
+        String findMovieId="SELECT movieId FROM " + REVIEW_TABLE_NAME + " WHERE reviewId= '" + reviewId + "';";
+        Cursor cursor = db.rawQuery(findMovieId,null);
+        cursor.moveToFirst();
+
+        if (cursor.moveToFirst())
+        {
+            movieId = cursor.getInt(cursor.getColumnIndex("movieId"));
+        }
+
+        db.close();
+
+
+        return movieId;
     }
 
     @SuppressLint("Range")
@@ -309,11 +354,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
         //execute the query. Cursor will be used to cycle through the results
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        Integer reviewId;
-        Integer movieId;
-        Integer userId;
-        String comment;
-        Integer rating;
+        int reviewId;
+        int movieId;
+        String userId;
+        String comments;
+        int stars;
 
         //if there was something returned move the cursor to the beginning of the list
         if(cursor.moveToFirst())
@@ -322,13 +367,13 @@ public class DatabaseHelper extends SQLiteOpenHelper
             {
                 reviewId = cursor.getInt(cursor.getColumnIndex("reviewId"));
                 movieId = cursor.getInt(cursor.getColumnIndex("movieId"));
-                userId = cursor.getInt(cursor.getColumnIndex("userId"));
-                comment = cursor.getString(cursor.getColumnIndex("comment"));
-                rating = cursor.getInt(cursor.getColumnIndex("rating"));
+                userId = cursor.getString(cursor.getColumnIndex("userId"));
+                comments = cursor.getString(cursor.getColumnIndex("comments"));
+                stars = cursor.getInt(cursor.getColumnIndex("stars"));
 
 
                 //add to list
-                listOfReviews.add(new Reviews(reviewId, movieId, userId, comment, rating));
+                listOfReviews.add(new Reviews(reviewId, movieId, userId, comments, stars));
             }
             while(cursor.moveToNext());
         }
@@ -359,7 +404,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         db.close();
     }
 
-    public void updateUser(Users u)
+    public void updateUser(String username, String password, int isAdmin)
     {
         //get writeable database
         SQLiteDatabase db = this.getWritableDatabase();
@@ -367,7 +412,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         //create out update command
         //needs to look like this:
         //UPDATE users SET firstname = 'Zack' , lastname = 'Moore' WHERE username = 'zmoore';
-        String updateCommand = "UPDATE " + USER_TABLE_NAME + " SET password = '" + u.getPword() + "' , admin = '" + u.isAdmin() + "' WHERE username = '" + u.getUname() + "';";
+        String updateCommand = "UPDATE " + USER_TABLE_NAME + " SET password = '" + password + "' , admin = '" + isAdmin + "' WHERE username = '" + username + "';";
 
         db.execSQL(updateCommand);
         db.close();
@@ -375,30 +420,30 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     //MOVIE CRUD===================================================================================
 
-    public void addMovie(Movies m)
+    public void addMovie(String title, String genre, int releaseYear, String ageRating, String description, String trailerUrl)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.execSQL("INSERT INTO " + MOVIE_TABLE_NAME +
-                "(title, genre, releaseYear, ageRating, description, trailerUrl) VALUES('" + m.getTitle() + "','" + m.getGenre() + "','" + m.getReleaseYear() + "','" + m.getAgeRating() +
-                "','" + m.getDescription() + "','" + m.getTrailerUrl() + "');");
+                "(title, genre, releaseYear, ageRating, description, trailerUrl) VALUES('" + title + "','" + genre + "','" + releaseYear + "','" + ageRating +
+                "','" + description + "','" + trailerUrl + "');");
 
         db.close();
     }
 
-    public void deleteMovie(String id)
+    public void deleteMovie(int id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + MOVIE_TABLE_NAME + " WHERE movieId = '" + id + "';");
         db.close();
     }
 
-    public void updateMovie(Movies m)
+    public void updateMovie(int movieId, String title, String genre, int releaseYear, String ageRating, String description, String trailerUrl)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String updateCommand = "UPDATE " + MOVIE_TABLE_NAME + " SET title = '" + m.getTitle() + "' , genre = '" + m.getTitle() + "' , releaseYear = '" + m.getReleaseYear() +
-                "' , ageRating = '" + m.getAgeRating() + "' , description = '" + m.getDescription() + "' , trailerUrl = '" + m.getTrailerUrl() + "' WHERE movieId = '" + m.getMovieId() + "';";
+        String updateCommand = "UPDATE " + MOVIE_TABLE_NAME + " SET title = '" + title + "' , genre = '" + genre + "' , releaseYear = '" + releaseYear +
+                "' , ageRating = '" + ageRating + "' , description = '" + description + "' , trailerUrl = '" + trailerUrl + "' WHERE movieId = '" + movieId + "';";
 
         db.execSQL(updateCommand);
         db.close();
@@ -406,12 +451,30 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     //REVIEW CRUD==================================================================================
 
-    public void addNewReview(Reviews r)
+    public void addReview(int movieId, String username, String comments, int stars)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
+        db.execSQL("INSERT INTO " + REVIEW_TABLE_NAME +
+                "(movieId, userId, comments, stars) VALUES('" + movieId + "','" + username + "','" + comments + "','" + stars + "');");
 
         db.close();
     }
 
+    public void deleteReview(int id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + REVIEW_TABLE_NAME + " WHERE reviewId = '" + id + "';");
+        db.close();
+    }
+
+    public void updateReview(int reviewId, String comments, int stars)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String updateCommand = "UPDATE " + REVIEW_TABLE_NAME + " SET comments = '" + comments + "' , stars = '" + stars + "' WHERE reviewId = '" + reviewId + "';";
+
+        db.execSQL(updateCommand);
+        db.close();
+    }
 }

@@ -6,12 +6,12 @@ public class Reviews implements Serializable
 {
     private Integer reviewId;
     private Integer movieId;
-    private Integer userId;
+    private String userId;
     private String comment;
     private Integer rating;
 
 
-    public Reviews(Integer reviewId, Integer movieId, Integer userId, String comment, Integer rating)
+    public Reviews(Integer reviewId, Integer movieId, String userId, String comment, Integer rating)
     {
         this.reviewId = reviewId;
         this.movieId = movieId;
@@ -38,11 +38,11 @@ public class Reviews implements Serializable
         this.movieId = movieId;
     }
 
-    public Integer getUserId()
+    public String getUserId()
     {
         return userId;
     }
-    public void setUserId(Integer userId)
+    public void setUserId(String userId)
     {
         this.userId = userId;
     }

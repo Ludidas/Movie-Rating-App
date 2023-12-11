@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#434343">
+
+    <ImageView
+        android:id="@+id/imageView53"
+        android:layout_width="335dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView52"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/comment_box" />
+
+    <TextView
+        android:id="@+id/rc_tv_v_comment"
+        android:layout_width="323dp"
+        android:layout_height="65dp"
+        android:fontFamily="@font/nova_round"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView53"
+        app:layout_constraintEnd_toEndOf="@+id/imageView53"
+        app:layout_constraintStart_toStartOf="@+id/imageView53"
+        app:layout_constraintTop_toTopOf="@+id/imageView53" />
+
+    <TextView
+        android:id="@+id/rc_tv_v_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/nova_round"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView53"
+        app:layout_constraintStart_toEndOf="@+id/imageView52" />
+
+    <TextView
+        android:id="@+id/rc_tv_v_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/nova_round"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profile_icon_ff_1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
